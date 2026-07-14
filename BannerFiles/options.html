@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Development Tenant Banner - Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="dtb-page">
+    <header class="dtb-page-header">
+      <div class="dtb-page-title">
+        <img src="icons/icon48.png" alt="" width="28" height="28" />
+        <h1>Development Tenant Banner</h1>
+      </div>
+      <label class="dtb-switch">
+        <input type="checkbox" id="enabledToggle" />
+        <span>Banner enabled</span>
+      </label>
+    </header>
+
+    <section class="dtb-card">
+      <h2>Sites</h2>
+      <p class="dtb-hint">First matching row wins - order matters. Prefix a URL match with <code>regex:</code> to use a regular expression instead of a plain substring match.</p>
+
+      <table class="dtb-table">
+        <thead>
+          <tr>
+            <th style="width:120px;">Name</th>
+            <th>URL match</th>
+            <th style="width:90px;">Color</th>
+            <th style="width:90px;">Font size</th>
+            <th style="width:150px;">Position</th>
+            <th style="width:60px;">Preview</th>
+            <th style="width:70px;">Enabled</th>
+            <th style="width:90px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tenantRows"></tbody>
+      </table>
+
+      <button id="addTenantBtn" class="dtb-btn dtb-btn-secondary">+ Add site</button>
+    </section>
+
+    <section class="dtb-card">
+      <h2>Import / Export settings</h2>
+      <p class="dtb-hint">Share your site list with your team, or back it up before making changes.</p>
+
+      <div class="dtb-io-row">
+        <button id="exportBtn" class="dtb-btn dtb-btn-secondary">Export to file</button>
+      </div>
+
+      <div class="dtb-io-row">
+        <label class="dtb-field-label">Import from a local file</label>
+        <input type="file" id="importFile" accept="application/json" />
+      </div>
+
+      <div class="dtb-io-row">
+        <label class="dtb-field-label">Import from a hosted file (URL)</label>
+        <div class="dtb-io-inline">
+          <input type="text" id="importUrl" placeholder="https://example.com/dtb-settings.json" />
+          <button id="importUrlBtn" class="dtb-btn dtb-btn-secondary">Import</button>
+        </div>
+        <p class="dtb-hint">You'll be asked to grant one-time access to that specific site before it's fetched.</p>
+      </div>
+
+      <div id="ioMessage" class="dtb-io-message"></div>
+    </section>
+
+    <footer class="dtb-page-footer">
+      <button id="clearAllBtn" class="dtb-btn dtb-btn-danger">Clear all settings</button>
+    </footer>
+  </div>
+
+  <!-- Regex builder modal - opened per-row via the "Build" button next to a URL match field -->
+  <div id="regexModalOverlay" class="dtb-modal-overlay">
+    <div class="dtb-modal">
+      <div class="dtb-modal-header">
+        <h3>Build a URL pattern</h3>
+        <button id="regexModalClose" class="dtb-icon-btn" aria-label="Close">✕</button>
+      </div>
+
+      <div class="dtb-modal-body">
+        <label class="dtb-field-label" for="regexType">What do you want to match?</label>
+        <select id="regexType">
+          <option value="exact">This exact domain</option>
+          <option value="subdomains">This domain and any subdomain of it</option>
+          <option value="prefix">Hostname starts with a specific word</option>
+          <option value="anyof">Contains any of these words</option>
+          <option value="wildcard">A pattern with a wildcard (use * for "anything")</option>
+          <option value="raw">I'll type my own regex</option>
+        </select>
+
+        <div id="regexFieldSingle" class="dtb-modal-field">
+          <label class="dtb-field-label" id="regexSingleLabel" for="regexSingleInput">Domain</label>
+          <input type="text" id="regexSingleInput" placeholder="example.com" />
+        </div>
+
+        <div id="regexFieldList" class="dtb-modal-field" style="display:none;">
+          <label class="dtb-field-label" for="regexListInput">One word or domain per line</label>
+          <textarea id="regexListInput" rows="4" placeholder="alpha&#10;beta&#10;test"></textarea>
+        </div>
+
+        <div class="dtb-modal-field">
+          <label class="dtb-field-label">Generated pattern</label>
+          <input type="text" id="regexOutput" readonly />
+        </div>
+
+        <div class="dtb-modal-field">
+          <label class="dtb-field-label" for="regexTestUrl">Test it against a sample URL (optional)</label>
+          <input type="text" id="regexTestUrl" placeholder="https://test.example.com/some/page" />
+          <div id="regexTestResult" class="dtb-io-message"></div>
+        </div>
+      </div>
+
+      <div class="dtb-modal-footer">
+        <button id="regexCancelBtn" class="dtb-btn dtb-btn-secondary">Cancel</button>
+        <button id="regexUseBtn" class="dtb-btn dtb-btn-primary">Use this pattern</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

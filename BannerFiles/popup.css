@@ -1,0 +1,144 @@
+/* Author: Andrew Hatton */
+/* Purpose: Styling for the compact per-page quick-toggle popup. Full settings now live
+   on the options page (options.html/css/js) - this stays deliberately small. */
+
+* { box-sizing: border-box; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  width: 300px;
+  font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1f2328;
+  background: #fff;
+}
+
+.dtb-app { padding: 12px 14px 14px; }
+
+.dtb-header { margin-bottom: 8px; }
+
+.dtb-header h1 {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.dtb-status-card {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f6f8fa;
+  margin-bottom: 10px;
+  min-height: 36px;
+}
+
+.dtb-status-loading {
+  font-size: 11px;
+  color: #57606a;
+}
+
+.dtb-status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dtb-status-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.dtb-status-text { flex: 1; min-width: 0; }
+
+.dtb-status-label {
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dtb-status-host {
+  font-size: 10px;
+  color: #57606a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dtb-status-empty {
+  font-size: 11px;
+  color: #57606a;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.dtb-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.dtb-toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+.dtb-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #d0d7de;
+  border-radius: 20px;
+  transition: 0.15s;
+}
+
+.dtb-toggle-slider::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.15s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.dtb-toggle-switch input:checked + .dtb-toggle-slider { background: #2f6fed; }
+.dtb-toggle-switch input:checked + .dtb-toggle-slider::before { transform: translateX(14px); }
+
+.dtb-btn {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dtb-btn-secondary {
+  background: #f6f8fa;
+  color: #1f2328;
+}
+.dtb-btn-secondary:hover { background: #eaeef2; }
+
+.dtb-btn-primary {
+  background: #2f6fed;
+  color: #fff;
+  border-color: #2f6fed;
+  margin-top: 4px;
+}
+.dtb-btn-primary:hover { background: #2558c9; border-color: #2558c9; }
+
+.dtb-global-off {
+  font-size: 11px;
+  color: #57606a;
+}
