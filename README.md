@@ -78,16 +78,19 @@ browser's local extension storage on your own device and never leave it. Full po
 https://cronotech.org/dtb/privacy.html
 
 ## Run from source
-
+1. Download the source file (Check the Releases or just download this repo)
+2. Unzip the files someplace you'll always have access to
+     A. Don't use a network drive. I recommend using your Documents folder (if on Windows)
+   
 **Chrome / Edge**
-
 1. Go to `chrome://extensions` (or `edge://extensions`).
 2. Turn on Developer mode.
 3. Click "Load unpacked" and select this folder.
+<img src="assets/dtb-Manual-Install-Edge.png" width="500" />
 
 **Firefox**
-
 1. Go to `about:debugging#/runtime/this-firefox`.
 2. Click "Load Temporary Add-on..." and select `manifest.json` in this folder.
    Temporary add-ons are removed on restart; a permanent install needs Mozilla
    signing or an enterprise policy.
+<img src="assets/dtb-Manual-Install-Firefox.png" width="500" />
